@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="dynamicFormApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Form app Angular JS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-controller="mainController">
+  <table>
+    <thead>
+      <tr class="panel panel-primary">
+        <th class="panel-heading text-center" ng-repeat="header in displayData.header">
+          {{header.headerName | uppercase}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="panel" ng-repeat="viewData in displayData.data" ng-class-even="'panel-warning'" ng-class-odd="'panel-default'">
+        <td class="panel-heading text-center" ng-repeat="key in keys(viewData)" ng-if="$index < displayData.header.length">
+          {{viewData[key]}}
+        </td>
+      </tr>
+
+      <tr>
+        <form ng-submit="addToList()">
+          <td class="text-center" ng-repeat="key in keys(tentativeFormData)">
+            <input class="form-control text-center" ng-model="tentativeFormData[key]" placeholder="{{displayData.header[$index].headerName}}">
+          </td>
+          <td>
+            <button type="submit" class="btn btn-success">Ajouter</button>
+          </td>
+        </form>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
+
+<script src="js/index.js"></script>
+
+</body>
+
+</html>
